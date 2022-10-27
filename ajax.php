@@ -10,7 +10,7 @@ if (isset($_POST['login'])) {
         header('Location:login.php?empty');
     } else {
         $password = md5($password);
-        $query = "SELECT * FROM user WHERE username = '$email' OR email='$email' AND password='$password'";
+        $query = "SELECT * FROM usuario WHERE username = '$email' OR email='$email' AND password='$password'";
         $result = mysqli_query($connection, $query);
         if (mysqli_num_rows($result) == 1) {
             $user = mysqli_fetch_assoc($result);
