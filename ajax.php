@@ -15,7 +15,7 @@ if (isset($_POST['login'])) {
         if (mysqli_num_rows($result) == 1) {
             $user = mysqli_fetch_assoc($result);
             $_SESSION['username'] = $user['username'];
-            $_SESSION['id_Usuario'] = $user['id_Usuario'];
+            $_SESSION['user_id'] = $user['id'];
             header('Location:index.php?dashboard');
         } else {
             header('Location:login.php?loginE');
