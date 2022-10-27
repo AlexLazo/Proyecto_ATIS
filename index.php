@@ -12,7 +12,7 @@ if (isset($_SESSION['user_id'])){
 }
 
 include_once "header.php";
-include_once "sidebar.php";
+include_once "barra.php";
 
 if (isset($_GET['manejo_cuart'])){
     include_once "manejo_cuart.php";
