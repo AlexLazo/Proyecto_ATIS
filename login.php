@@ -5,7 +5,6 @@
 </head>
 <body>
 
-
 <div class="container">
     <div class="card card-container">
         <img id="profile-img" class="profile-img-card" src="img/htl.png"/>
@@ -35,12 +34,11 @@
                 </div>
             </div>
 
-            <button class="btn btn-lg btn-success btn-block btn-signin" type="submit" name="login">LOGIN</button>
+            <button class="btn btn-lg btn-success btn-block btn-signin" type="submit" name="login">Iniciar Sesión</button>
 
-        </form><!-- /form -->
-    </div><!-- /card-container -->
-</div><!-- /container -->
-
+        </form>
+    </div>
+</div>
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/validator.min.js"></script>
