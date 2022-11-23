@@ -14,6 +14,7 @@
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-teal panel-widget border-right">
 						<div class="row no-padding"><em class="fa fa-xl fa-bed color-blue"></em>
+						<div class="large"><?php include 'contador/cont-habit.php'?></div>
 							<div class="text-muted">Habitaciones totales</div>
 						</div>
 					</div>
@@ -21,6 +22,7 @@
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-blue panel-widget border-right">
 						<div class="row no-padding"><em class="fa fa-xl fa-bookmark color-orange"></em>
+						<div class="large"><?php include 'contador/cont-reserv.php'?></div>
 							<div class="text-muted">Reservaciones</div>
 						</div>
 					</div>
@@ -28,6 +30,7 @@
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-orange panel-widget border-right">
 						<div class="row no-padding"><em class="fa fa-xl fa-users color-teal"></em>
+						<div class="large"><?php include 'contador/cont-trabaj.php'?></div>
 							<div class="text-muted">Trabajadores</div>
 						</div>
 					</div>
@@ -35,6 +38,7 @@
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-red panel-widget ">
 						<div class="row no-padding"><em class="fa fa-xl fa-comments color-red"></em>
+						<div class="large"><?php include 'contador/cont-quejas.php'?></div>
 							<div class="text-muted">Quejas</div>
 						</div>
 					</div>
@@ -47,6 +51,7 @@
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-teal panel-widget border-right">
 						<div class="row no-padding"><em class="fa fa-xl fa-reorder color-red"></em>
+						<div class="large"><?php include 'contador/cont-habreservadas.php'?></div>
 							<div class="text-muted">Habitaciones reservadas</div>
 						</div>
 					</div>
@@ -54,6 +59,7 @@
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-blue panel-widget border-right">
 						<div class="row no-padding"><em class="fa fa-xl fa-check-circle color-green"></em>
+						<div class="large"><?php include 'contador/cont-habdisponibles.php'?></div>
 							<div class="text-muted">Habitaciones disponibles</div>
 						</div>
 					</div>
@@ -61,6 +67,7 @@
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-orange panel-widget border-right">
 						<div class="row no-padding"><em class="fa fa-xl fa-check-square-o color-magg"></em>
+						<div class="large"><?php include 'contador/cont-checkin.php'?></div>
 							<div class="text-muted">Checked-In</div>
 						</div>
 					</div>
@@ -68,6 +75,7 @@
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-red panel-widget ">
 						<div class="row no-padding"><em class="fa fa-xl fa-spinner color-blue"></em>
+						<div class="large"><?php include 'contador/cont-pagopend.php'?></div>
 							<div class="text-muted">Total de pagos pendientes</div>
 						</div>
 					</div>
@@ -84,6 +92,7 @@
 				<div class="col-xs-6 col-md-4 col-lg-4 no-padding">
 					<div class="panel panel-red panel-widget border-right">
 						<div class="row no-padding"><em class="fa fa-xl fa-money color-red"></em>
+						<div class="large"><?php include 'contador/cont-ingresos.php'?></div>
                         <div class="large">$</div>
 							<div class="text-muted">Total de Ganancias</div>
 						</div>
@@ -92,6 +101,7 @@
 				<div class="col-xs-6 col-md-4 col-lg-4 no-padding">
 					<div class="panel panel-orange panel-widget ">
 						<div class="row no-padding"><em class="fa fa-xl fa-credit-card color-purp"></em>
+						<div class="large"><?php include 'contador/pagopendiente.php'?></div>
 							<div class="large">$</div>
 							<div class="text-muted">Pago pendiente</div>
 						</div>
