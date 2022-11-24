@@ -1,14 +1,14 @@
 <?php
-if (isset($_GET['idHabitacion'])){
-    $get_habitacion_id = $_GET['idHabitacion'];
-    $get_habitacion_sql = "SELECT * FROM habitacion NATURAL JOIN tipohabitacion WHERE idHabitacion = '$get_habitacion_id'";
-    $get_habitacion_result = mysqli_query($connection,$get_habitacion_sql);
-    $get_habitacion = mysqli_fetch_assoc($get_room_result);
+if (isset($_GET['id_habitacion'])){
+    $get_room_id = $_GET['id_habitacion'];
+    $get_room_sql = "SELECT * FROM habitacion NATURAL JOIN tipohabitacion WHERE id_habitacion = '$get_room_id'";
+    $get_room_result = mysqli_query($connection,$get_room_sql);
+    $get_room = mysqli_fetch_assoc($get_room_result);
 
-    $get_tipo_habitacion_id = $get_habitacion['id_tipohabitacion'];
-    $get_tipo_habitacion = $get_habitacion['tipohabitacion'];
-    $get_habitacion_no = $get_habitacion['numeroHabitacion'];
-    $get_precio_habitacion = $get_habitacion['precio'];
+    $get_room_type_id = $get_room['id_tipohabitacion'];
+    $get_room_type = $get_room['tipohabitacion'];
+    $get_room_no = $get_room['numeroHabitacion'];
+    $get_room_price = $get_room['precio'];
 }
 ?>
 
@@ -28,47 +28,47 @@ if (isset($_GET['idHabitacion'])){
                 <div class="response"></div>
                 <div class="col-lg-12">
                     <?php
-                    if (isset($_GET['idHabitacion'])){?>
+                    if (isset($_GET['id_habitacion'])){?>
 
                         <div class="panel panel-default">
                             <div class="panel-heading">Informacion de la habitacion:
-                                <a class="btn btn-secondary pull-right" href="index.php?room_mang">Replanificar la reservacion</a>
+                                <a class="btn btn-secondary pull-right" href="index.php?reservation">Replanificar la reservacion</a>
                             </div>
                             <div class="panel-body">
                                 <div class="form-group col-lg-6">
                                     <label>Tipo de habitacion</label>
                                     <select class="form-control" id="room_type" data-error="Select Room Type" required>
                                         <option selected disabled>Seleccionar tipo de habitacion</option>
-                                        <option selected value="<?php echo $get_tipo_habitacion_id; ?>"><?php echo $get_tipo_habitacion; ?></option>
+                                        <option selected value="<?php echo $get_room_type_id; ?>"><?php echo $get_room_type; ?></option>
                                     </select>
                                     <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group col-lg-6">
                                     <label>N° Habitacion</label>
-                                    <select class="form-control" id="room_no" onchange="fetch_price(this.value)" required data-error="Select Room No">
+                                    <select class="form-control" id="room_no" onchange="fetch_price(this.value)" required data-error="Seleccionar el número de Habitación">
                                         <option selected disabled>Seleccionar numero de habitacion</option>
-                                        <option selected value="<?php echo $get_habitacion_id; ?>"><?php echo $get_habitacion_no; ?></option>
+                                        <option selected value="<?php echo $get_room_id; ?>"><?php echo $get_room_no; ?></option>
                                     </select>
                                     <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group col-lg-6">
                                     <label>Check In</label>
-                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="check_in_date" data-error="Select Check In Date" required>
+                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="check_in_date" data-error="Seleccione la fecha de Entrada" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group col-lg-6">
                                     <label>Check Out</label>
-                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="check_out_date" data-error="Select Check Out Date" required>
+                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="check_out_date" data-error="Seleccione la fecha de Salida" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="col-lg-12">
-                                    <h4 style="font-weight: bold">Total de Dias : <span id="staying_day">0</span> Days</h4>
-                                    <h4 style="font-weight: bold">Precio: <span id="price"><?php echo $get_precio_habitacion; ?></span> /-</h4>
-                                    <h4 style="font-weight: bold">Monto total : <span id="total_price">0</span> /-</h4>
+                                    <h4 style="font-weight: bold">Total de Dias : <span id="staying_day">0</span> Días</h4>
+                                    <h4 style="font-weight: bold">Precio: $<span id="price"><?php echo $get_room_price; ?></span></h4>
+                                    <h4 style="font-weight: bold">Monto total : "<span id="total_price">0</span></h4>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@ if (isset($_GET['idHabitacion'])){
                             <div class="panel-body">
                                 <div class="form-group col-lg-6">
                                     <label>Tipo de habitacion</label>
-                                    <select class="form-control" id="tipohabitacion" onchange="fetch_room(this.value);" required data-error="Select Room Type">
+                                    <select class="form-control" id="room_type" onchange="fetch_room(this.value);" required data-error="Seleccione un tipo de habitación">
                                         <option selected disabled>Seleccionar tipo de habitacion</option>
                                         <?php
                                         $query  = "SELECT * FROM tipohabitacion";
@@ -96,28 +96,28 @@ if (isset($_GET['idHabitacion'])){
 
                                 <div class="form-group col-lg-6">
                                     <label>N° habitación</label>
-                                    <select class="form-control" id="numeroHabitacion" onchange="fetch_price(this.value)" required data-error="Seleccione el número de habitación">
+                                    <select class="form-control" id="room_no" onchange="fetch_price(this.value)" required data-error="Seleccione el número de habitación">
 
                                     </select>
                                     <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group col-lg-6">
-                                    <label>Check In</label>
-                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="check_in_date" data-error="Select una Fecha de Entrada" required>
+                                    <label>Check-In</label>
+                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="check_in_date" data-error="Seleccione una Fecha de Entrada" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group col-lg-6">
-                                    <label>Check Out</label>
-                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="check_out_date" data-error="Select una Fecha de Salida" required>
+                                    <label>Check-Out</label>
+                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="check_out_date" data-error="Seleccione una Fecha de Salida" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="col-lg-12">
                                     <h4 style="font-weight: bold">Total de Dias : <span id="staying_day">0</span> Días</h4>
-                                    <h4 style="font-weight: bold">Precio: <span id="price">0</span> /-</h4>
-                                    <h4 style="font-weight: bold">Monto total : <span id="total_price">0</span> /-</h4>
+                                    <h4 style="font-weight: bold">Precio: $<span id="price">0</span></h4>
+                                    <h4 style="font-weight: bold">Monto total : $<span id="total_price">0</span></h4>
                                 </div>
                             </div>
                         </div>
@@ -139,12 +139,12 @@ if (isset($_GET['idHabitacion'])){
 
                             <div class="form-group col-lg-6">
                                 <label>Numero de contacto</label>
-                                <input type="number" class="form-control" data-error="Ingrese al menos 8 dígitos" data-minlength="8" placeholder="Contact No" id="contact_no" required>
+                                <input type="number" class="form-control" data-error="Ingrese al menos 8 dígitos" data-minlength="8" placeholder="Ingrese su número de contacto" id="contact_no" required>
                                 <div class="help-block with-errors"></div>
                             </div>
 
                             <div class="form-group col-lg-6">
-                                <label>Direccion de correo electronico</label>
+                                <label>Dirección de correo electronico</label>
                                 <input type="email" class="form-control" placeholder="Dirección de E-Mail" id="email" data-error="Enter Valid Email Address" required>
                                 <div class="help-block with-errors"></div>
                             </div>
@@ -167,13 +167,13 @@ if (isset($_GET['idHabitacion'])){
 
                             <div class="form-group col-lg-6">
                                 <label>Numero de tarjeta de identificacion seleccionada</label>
-                                <input type="text" class="form-control" placeholder="ID Card Number" id="id_card_no" data-error="Enter Valid ID Card No" required>
+                                <input type="text" class="form-control" placeholder="Número de tarjeta de ID" id="id_card_no" data-error="Ingresa un N° de ID" required>
                                 <div class="help-block with-errors"></div>
                             </div>
 
                             <div class="form-group col-lg-12">
                                 <label>Direccion de residencia</label>
-                                <input type="text" class="form-control" placeholder="Full Address" id="address" required>
+                                <input type="text" class="form-control" placeholder="Dirección completa" id="address" required>
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -189,18 +189,15 @@ if (isset($_GET['idHabitacion'])){
         </div>
     </div>
 
-</div>    <!--/.main-->
+</div>  
 
-
-<!-- Booking Confirmation-->
 <div id="bookingConfirm" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
-        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-center"><b>Reserva de habitacion</b></h4>
+                <h4 class="modal-title text-center"><b>Reserva de habitación</b></h4>
             </div>
             <div class="modal-body">
                 <div class="row">

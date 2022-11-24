@@ -92,8 +92,7 @@
 				<div class="col-xs-6 col-md-4 col-lg-4 no-padding">
 					<div class="panel panel-red panel-widget border-right">
 						<div class="row no-padding"><em class="fa fa-xl fa-money color-red"></em>
-						<div class="large"><?php include 'contador/cont-ingresos.php'?></div>
-                        <div class="large">$</div>
+                        <div class="large">$<?php include 'contador/cont-ingresos.php'?></div>
 							<div class="text-muted">Total de Ganancias</div>
 						</div>
 					</div>
@@ -101,8 +100,7 @@
 				<div class="col-xs-6 col-md-4 col-lg-4 no-padding">
 					<div class="panel panel-orange panel-widget ">
 						<div class="row no-padding"><em class="fa fa-xl fa-credit-card color-purp"></em>
-						<div class="large"><?php include 'contador/pagopendiente.php'?></div>
-							<div class="large">$</div>
+							<div class="large">$<?php include 'contador/pagopendiente.php'?></div>
 							<div class="text-muted">Pago pendiente</div>
 						</div>
 					</div>

@@ -26,14 +26,17 @@ elseif (isset($_GET['reservation'])){
 elseif (isset($_GET['manejo_trabaj'])){
     include_once "manejo_trabaj.php";
 }
+elseif (isset($_GET['agregar_emp'])){
+    include_once "agregar_emp.php";
+}
 elseif (isset($_GET['quejas'])){
     include_once "quejas.php";
 }
 elseif (isset($_GET['estadist'])){
     include_once "estadist.php";
 }
-elseif (isset($_GET['emp_history'])){
-    include_once "emp_history.php";
+elseif (isset($_GET['emp_historial'])){
+    include_once "emp_historial.php";
 }
 else{
     include_once "manejo_cuart.php";

@@ -1,6 +1,6 @@
 <?php
 $servidor = "localhost";
-$bd = "hotelsystem";
+$bd = "hms";
 $usuario = "root";
 $password = "";
 // Create connection
