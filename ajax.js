@@ -221,7 +221,7 @@ $(document).on('click', '#customerDetails', function(e) {
                 $('#customer_id_card_type').html(response.id_card_type_id);
                 $('#customer_id_card_number').html(response.id_card_no);
                 $('#customer_address').html(response.address);
-                $('#remaining_price').html(response.remaining_price);
+                $('#remaining_price').html('$' + response.remaining_price);
 
             } else {
 
@@ -255,7 +255,7 @@ $(document).on('click', '#checkInRoom', function(e) {
                 $('#getRoomNo').html(response.room_no);
                 $('#getCheckIn').html(response.check_in);
                 $('#getCheckOut').html(response.check_out);
-                $('#getTotalPrice').html(response.total_price + '$');
+                $('#getTotalPrice').html('$' + response.total_price);
                 $('#getBookingID').val(response.booking_id);
                 $('#checkIn').modal('show');
             } else {
@@ -347,7 +347,7 @@ $('#checkOutRoom_n').submit(function() {
         success: function(response) {
             if (response.done == true) {
                 $('#checkIn').modal('hide');
-                window.location.href = 'index.php?room_mang';
+                window.location.href = 'index.php?manejo_cuart';
             } else {
                 $('.checkout-response').html('<div class="alert bg-danger alert-dismissable" role="alert"><em class="fa fa-lg fa-warning">&nbsp;</em>' + response.data + '</div>');
             }
@@ -393,7 +393,7 @@ $('#addEmployee').submit(function() {
         success: function(response) {
             if (response.done == true) {
                 document.getElementById("addEmployee").reset();
-                $('.emp-response').html('<div class="alert bg-success alert-dismissable" role="alert"><em class="fa fa-lg fa-warning">&nbsp;</em>Employee Successfully Added</div>');
+                $('.emp-response').html('<div class="alert bg-success alert-dismissable" role="alert"><em class="fa fa-lg fa-warning">&nbsp;</em>Empleado correctamente agregado</div>');
             } else {
                 $('.emp-response').html('<div class="alert bg-danger alert-dismissable" role="alert"><em class="fa fa-lg fa-warning">&nbsp;</em>' + response.data + '</div>');
             }
@@ -419,6 +419,7 @@ $('#edit_employee').submit(function() {
     var salary = $('#salary').val();
 
 
+
     $.ajax({
         type: 'post',
         url: 'ajax.php',
@@ -438,7 +439,7 @@ $('#edit_employee').submit(function() {
 
         },
         success: function(response) {
-            alert("Employee Added Successfully");
+            alert("Empleado agregado correctamente");
             document.getElementById("add_employee").reset();
 
         }

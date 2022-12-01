@@ -37,7 +37,7 @@
                             <th>Cambio</th>
                             <th>Dia de ingreso</th>
                             <th>Salario</th>
-                            <th>Cambiar turno</th>
+                            <th>Cambio de turno</th>
                             <th>Accion</th>
                         </tr>
                         </thead>
@@ -97,16 +97,17 @@
 </div>
 
 <?php
-$personal_query = "SELECT * FROM personal  NATURAL JOIN tipopersonal NATURAL JOIN cambio";
-$personal_result = mysqli_query($connection, $personal_query);
+$staff_query = "SELECT * FROM personal  NATURAL JOIN tipopersonal NATURAL JOIN cambio";
+$staff_result = mysqli_query($connection, $staff_query);
 
-if (mysqli_num_rows($personal_result) > 0) {
-    while ($personalGlobal = mysqli_fetch_assoc($personal_result)) {
-        $fullname = explode(" ", $personalGlobal['nombre']);
+if (mysqli_num_rows($staff_result) > 0) {
+    while ($staffGlobal = mysqli_fetch_assoc($staff_result)) {
+        $fullname = explode(" ", $staffGlobal['nombre']);
         ?>
 
+
         <!-- Employee Detail-->
-        <div id="empDetail<?php echo $personalGlobal['id_empleado']; ?>" class="modal fade" role="dialog">
+        <div id="empDetail<?php echo $staffGlobal['id_empleado']; ?>" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -124,12 +125,12 @@ if (mysqli_num_rows($personal_result) > 0) {
                                     <div class="panel-body">
                                         <form data-toggle="validator" role="form" action="functionmis.php"
                                               method="post">
-                                            <div class="row">
+                                              <div class="row">
                                                 <div class="form-group col-lg-6">
                                                     <label>Trabajadores</label>
                                                     <select class="form-control" id="staff_type" name="staff_type_id"
                                                             required>
-                                                        <option selected disabled>Seleccione el tipo de personal</option>
+                                                        <option selected disabled>Seleccione el tipo de puesto</option>
                                                         <?php
                                                         $query = "SELECT * FROM tipopersonal";
                                                         $result = mysqli_query($connection, $query);
@@ -141,7 +142,22 @@ if (mysqli_num_rows($personal_result) > 0) {
                                                         ?>
                                                     </select>
                                                 </div>
-                                                <input type="hidden" value="<?php echo $personalGlobal['id_empleado']; ?>"
+
+                                                <div class="form-group col-lg-6">
+                                                    <select style="visibility: hidden;" class="form-control" id="shift" name="shift_id" required>
+                                                        <option selected disabled>Seleccione Horario de Cambio</option>
+                                                        <?php
+                                                        $query = "SELECT * FROM cambio";
+                                                        $result = mysqli_query($connection, $query);
+                                                        if (mysqli_num_rows($result) > 0) {
+                                                            while ($shift = mysqli_fetch_assoc($result)) {
+                                                                echo '<option value="' . $shift['id_cambio'] . '" ' . (($shift['id_cambio'] == $staffGlobal['id_cambio']) ? 'selected="selected"' : "") . '>' . $shift['tiempoCambio'] . '</option>';
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                                <input type="hidden" value="<?php echo $staffGlobal['id_empleado']; ?>"
                                                        id="emp_id" name="emp_id">
 
                                                 <div class="form-group col-lg-6">
@@ -159,17 +175,17 @@ if (mysqli_num_rows($personal_result) > 0) {
                                                 </div>
 
                                                 <div class="form-group col-lg-6">
-                                                    <label>Tipo de tarjeta de identificacion</label>
+                                                    <label>Tipo de Identificación</label>
                                                     <select class="form-control" id="id_card_id" name="id_card_type"
                                                             required>
-                                                        <option selected disabled>Seleccionar tipo de tarjeta de identificacion</option>
+                                                        <option selected disabled>Seleccione el tipo de ID</option>
                                                         <?php
                                                         $query = "SELECT * FROM tipo_documento";
                                                         $result = mysqli_query($connection, $query);
 
                                                         if (mysqli_num_rows($result) > 0) {
-                                                            while ($tipodocumento = mysqli_fetch_assoc($result)) {
-                                                                echo '<option  value="' . $tipodocumento['id_tipodocumento'] . '" ' . (($tipodocumento['id_tipodocumento'] == $personalGlobal['tipotarjeta']) ? 'selected="selected"' : "") . '>' . $tipodocumento['tipotarjeta'] . '</option>';
+                                                            while ($id_card_type = mysqli_fetch_assoc($result)) {
+                                                                echo '<option  value="' . $id_card_type['id_tipodocumento'] . '" ' . (($id_card_type['id_tipodocumento'] == $staffGlobal['tipotarjeta']) ? 'selected="selected"' : "") . '>' . $id_card_type['tipotarjeta'] . '</option>';
                                                             }
                                                         }
 
@@ -178,37 +194,37 @@ if (mysqli_num_rows($personal_result) > 0) {
                                                 </div>
 
                                                 <div class="form-group col-lg-6">
-                                                    <label>N° tarjeta de identificacion</label>
-                                                    <input type="text" class="form-control" placeholder="Número de identificacion"
+                                                    <label>N° de ID</label>
+                                                    <input type="text" class="form-control" placeholder="ID Card No"
                                                            id="id_card_no"
-                                                           value="<?php echo $personalGlobal['numeroTarjeta']; ?>"
+                                                           value="<?php echo $staffGlobal['numeroTarjeta']; ?>"
                                                            name="id_card_no" required>
                                                 </div>
                                                 <div class="form-group col-lg-6">
-                                                    <label>Numero de contacto</label>
+                                                    <label>Número de contacto</label>
                                                     <input type="number" class="form-control"
-                                                           placeholder="Número de Contacto" id="contact_no"
-                                                           value="<?php echo $personalGlobal['telefono']; ?>"
+                                                           placeholder="Contact Number" id="contact_no"
+                                                           value="<?php echo $staffGlobal['telefono']; ?>"
                                                            name="contact_no" required>
                                                 </div>
 
                                                 <div class="form-group col-lg-6">
-                                                    <label>Direccion</label>
+                                                    <label>Dirección</label>
                                                     <input type="text" class="form-control" placeholder="Dirección"
-                                                           id="address" value="<?php echo $personalGlobal['direccion']; ?>"
+                                                           id="address" value="<?php echo $staffGlobal['direccion']; ?>"
                                                            name="address">
                                                 </div>
 
                                                 <div class="form-group col-lg-6">
                                                     <label>Salario</label>
                                                     <input type="number" class="form-control" placeholder="Salario"
-                                                           id="salary" value="<?php echo $personalGlobal['salario']; ?>"
+                                                           id="salary" value="<?php echo $staffGlobal['salario']; ?>"
                                                            name="salary" required>
                                                 </div>
 
                                             </div>
 
-                                            <button type="submit" class="btn btn-lg btn-primary" name="submit">Enviar
+                                            <button type="submit" class="btn btn-lg btn-primary" name="submit">Guardar
                                             </button>
                                             <button type="reset" class="btn btn-lg btn-danger">Reiniciar</button>
                                         </form>
@@ -233,7 +249,7 @@ if (mysqli_num_rows($personal_result) > 0) {
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Cargar cambio</h4>
+                        <h4 class="modal-title">Cambio de Turno</h4>
                     </div>
                     <div class="modal-body">
 
@@ -246,13 +262,13 @@ if (mysqli_num_rows($personal_result) > 0) {
                                             <div class="form-group col-lg-12">
                                                 <label>Cambio</label>
                                                 <select class="form-control" id="shift" name="shift_id" required>
-                                                    <option selected disabled>Seleccionar tipo de personal</option>
+                                                    <option selected disabled>Seleccione el horario</option>
                                                     <?php
                                                     $query = "SELECT * FROM cambio";
                                                     $result = mysqli_query($connection, $query);
                                                     if (mysqli_num_rows($result) > 0) {
-                                                        while ($cambio = mysqli_fetch_assoc($result)) {
-                                                            echo '<option value="' . $cambio['id_cambio'] . '" ' . (($cambio['id_cambio'] == $personalGlobal['id_cambio']) ? 'selected="selected"' : "") . '>' . $cambio['tiempoCambio'] . '</option>';
+                                                        while ($shift = mysqli_fetch_assoc($result)) {
+                                                            echo '<option value="' . $shift['id_cambio'] . '" ' . (($shift['id_cambio'] == $staffGlobal['id_cambio']) ? 'selected="selected"' : "") . '>' . $shift['tiempoCambio'] . '</option>';
                                                         }
                                                     }
                                                     ?>
@@ -260,7 +276,7 @@ if (mysqli_num_rows($personal_result) > 0) {
                                             </div>
                                             </div>
                                             <input type="hidden" name="emp_id" value="" id="getEmpId">
-                                            <button type="submit" class="btn btn-lg btn-primary" name="change_shift">Enviar</button>
+                                            <button type="submit" class="btn btn-lg btn-primary" name="change_shift">Guardar</button>
                                         </form>
                                     </div>
                                 </div>

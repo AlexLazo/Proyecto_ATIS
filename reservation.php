@@ -68,7 +68,7 @@ if (isset($_GET['id_habitacion'])){
                                 <div class="col-lg-12">
                                     <h4 style="font-weight: bold">Total de Dias : <span id="staying_day">0</span> Días</h4>
                                     <h4 style="font-weight: bold">Precio: $<span id="price"><?php echo $get_room_price; ?></span></h4>
-                                    <h4 style="font-weight: bold">Monto total : "<span id="total_price">0</span></h4>
+                                    <h4 style="font-weight: bold">Monto total : $<span id="total_price">0</span></h4>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +117,7 @@ if (isset($_GET['id_habitacion'])){
                                 <div class="col-lg-12">
                                     <h4 style="font-weight: bold">Total de Dias : <span id="staying_day">0</span> Días</h4>
                                     <h4 style="font-weight: bold">Precio: $<span id="price">0</span></h4>
-                                    <h4 style="font-weight: bold">Monto total : $<span id="total_price">0</span></h4>
+                                    <h4 style="font-weight: bold">Monto total: $<span id="total_price">0</span></h4>
                                 </div>
                             </div>
                         </div>
@@ -231,7 +231,7 @@ if (isset($_GET['id_habitacion'])){
                             </tr>
                             <tr>
                                 <td><b>Estado de pago</b></td>
-                                <td id="getPaymentStaus"></td>
+                                <td id="getPaymentStaus">$ </td>
                             </tr>
 
                             </tbody>

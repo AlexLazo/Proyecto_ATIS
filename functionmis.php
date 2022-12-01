@@ -32,7 +32,6 @@ if (isset($_POST['submit'])) {
     $address = $_POST['address'];
     $contact_no = $_POST['contact_no'];
     $joining_date = strtotime($_POST['joining_date']);
-
     $salary = $_POST['salary'];
 
     $query="UPDATE personal
@@ -41,18 +40,17 @@ numeroTarjeta='$id_card_no',direccion='$address',telefono='$contact_no',diaIngre
 WHERE id_empleado=$emp_id ";
 //echo $query;
     if (mysqli_query($connection, $query)) {
-        header('Location: index.php?manejo_trabaj');
+        header('Location: index.php?manejo_trabaj&success');
     } else {
         echo "Error actualizando el registro: " . mysqli_error($connection);
     }
-
 
 }
 
 if (isset($_GET['empid'])!="")
 {
    $emp_id=$_GET['empid'];
-    $deleteQuery = "DELETE FROM personal WHERE id_empleado=$emp_id";
+    $deleteQuery = "DELETE FROM personal WHERE id_empleado = $emp_id";
     if (mysqli_query($connection, $deleteQuery)) {
         header('Location: index.php?manejo_trabaj');
     } else {

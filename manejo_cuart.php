@@ -339,31 +339,31 @@
                                 
                                 <tbody>
                                 <tr>
-                                    <td><b>Customer Name</b></td>
+                                    <td><b>Nombre del cliente</b></td>
                                     <td id="getCustomerName_n"></td>
                                 </tr>
                                 <tr>
-                                    <td><b>Room Type</b></td>
+                                    <td><b>Tipo de Habitación</b></td>
                                     <td id="getRoomType_n"></td>
                                 </tr>
                                 <tr>
-                                    <td><b>Room Number</b></td>
+                                    <td><b>Número de Habitación</b></td>
                                     <td id="getRoomNo_n"></td>
                                 </tr>
                                 <tr>
-                                    <td><b>Check In</b></td>
+                                    <td><b>Check-In</b></td>
                                     <td id="getCheckIn_n"></td>
                                 </tr>
                                 <tr>
-                                    <td><b>Check Out</b></td>
+                                    <td><b>Check-Out</b></td>
                                     <td id="getCheckOut_n"></td>
                                 </tr>
                                 <tr>
-                                    <td><b>Total Amount</b></td>
+                                    <td><b>Pago total</b></td>
                                     <td id="getTotalPrice_n"></td>
                                 </tr>
                                 <tr>
-                                    <td><b>Remaining Amount</b></td>
+                                    <td><b>Pago restante</b></td>
                                     <td id="getRemainingPrice_n"></td>
                                 </tr>
                                 </tbody>
@@ -390,5 +390,3 @@
 
 </div>  
 ?>
-
-

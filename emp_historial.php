@@ -30,7 +30,7 @@
                     $employee = mysqli_fetch_assoc($emp_result);
                     ?>
                     <p><b>Nombre del Empleado: </b> <?php echo $employee['nombre']; ?></p>
-                    <p><b>Salario del Empleado: </b> <?php echo $employee['salario'].'/-'; ?></p>
+                    <p><b>Salario del Empleado: </b> <?php echo $employee['salario'].'$'; ?></p>
                     <table class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%"
                            id="rooms">
                         <thead>
@@ -44,7 +44,6 @@
                         <tbody>
                         <?php
 
-                        //$staff_query = "SELECT * FROM staff  JOIN staff_type JOIN shift ON staff.staff_type_id =staff_type.staff_type_id ON shift.";
                         $staff_query = "SELECT * FROM historiaempleado NATURAL JOIN cambio WHERE id_empleado = '$emp_id' ORDER BY creado DESC";
                         $staff_result = mysqli_query($connection, $staff_query);
 
@@ -85,7 +84,6 @@
 </div> 
 
 <?php
-//$staff_query = "SELECT * FROM staff  JOIN staff_type JOIN shift ON staff.staff_type_id =staff_type.staff_type_id ON shift.";
 $staff_query = "SELECT * FROM personal NATURAL JOIN tipopersonal NATURAL JOIN cambio";
 $staff_result = mysqli_query($connection, $staff_query);
 
@@ -115,7 +113,7 @@ if (mysqli_num_rows($staff_result) > 0) {
                                               method="post">
                                             <div class="row">
                                                 <div class="form-group col-lg-6">
-                                                    <label>Staff</label>
+                                                    <label>Personal</label>
                                                     <select class="form-control" id="staff_type" name="staff_type_id"
                                                             required>
                                                         <option selected disabled>Seleccionar tipo de personal</option>
@@ -124,7 +122,6 @@ if (mysqli_num_rows($staff_result) > 0) {
                                                         $result = mysqli_query($connection, $query);
                                                         if (mysqli_num_rows($result) > 0) {
                                                             while ($staff = mysqli_fetch_assoc($result)) {
-                                                                //  echo '<option value=" ' . $staff['staff_type_id'] . ' "  selected  >' . $staff['staff_type'] . '</option>';
                                                                 echo '<option value="' . $staff['id_tipopersonal'] . '" ' . (($staff['id_tipopersonal'] == $staffGlobal['id_tipopersonal']) ? 'selected="selected"' : "") . '>' . $staff['staff_type'] . '</option>';
                                                             }
                                                         }
@@ -249,9 +246,9 @@ if (mysqli_num_rows($staff_result) > 0) {
                                         <form data-toggle="validator" role="form" action="ajax.php" method="post">
                                             <div class="row">
                                                 <div class="form-group col-lg-12">
-                                                    <label>Shift</label>
+                                                    <label>Cambio</label>
                                                     <select class="form-control" id="shift" name="shift_id" required>
-                                                        <option selected disabled>Seleccione el tipo de personal</option>
+                                                        <option selected disabled>Seleccione el turno</option>
                                                         <?php
                                                         $query = "SELECT * FROM cambio";
                                                         $result = mysqli_query($connection, $query);

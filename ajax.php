@@ -23,6 +23,8 @@ if (isset($_POST['login'])) {
     }
 }
 
+
+//Agregar habitacion
 if (isset($_POST['add_room'])) {
     $room_type_id = $_POST['id_tipohabitacion'];
     $room_no = $_POST['numeroHabitacion'];
@@ -74,8 +76,7 @@ if (isset($_POST['room'])) {
     echo json_encode($response);
 }
 
-
-
+//Editar habitacion
 if (isset($_POST['edit_room'])) {
     $room_type_id = $_POST['id_tipohabitacion'];
     $room_no = $_POST['numeroHabitacion'];
@@ -101,6 +102,7 @@ if (isset($_POST['edit_room'])) {
 
     echo json_encode($response);
 }
+
 //Función para eliminar cuartos
 if (isset($_GET['delete_room'])) {
     $room_id = $_GET['delete_room'];
@@ -130,6 +132,7 @@ if (isset($_POST['room_type'])) {
     }
 }
 
+//Precio habitación
 if (isset($_POST['room_price'])) {
     $room_id = $_POST['id_habitacion'];
 
@@ -227,14 +230,14 @@ if (isset($_POST['booked_room'])) {
     if ($result) {
         $room = mysqli_fetch_assoc($result);
         $response['done'] = true;
-        $response['booking_id'] = $room['booking_id'];
-        $response['name'] = $room['customer_name'];
-        $response['room_no'] = $room['room_no'];
-        $response['room_type'] = $room['room_type'];
+        $response['booking_id'] = $room['id_reservacion'];
+        $response['name'] = $room['nombre'];
+        $response['room_no'] = $room['numeroHabitacion'];
+        $response['room_type'] = $room['tipohabitacion'];
         $response['check_in'] = date('M j, Y', strtotime($room['check_in']));
         $response['check_out'] = date('M j, Y', strtotime($room['check_out']));
-        $response['total_price'] = $room['total_price'];
-        $response['remaining_price'] = $room['remaining_price'];
+        $response['total_price'] = $room['precioTotal'];
+        $response['remaining_price'] = $room['precioRestante'];
     } else {
         $response['done'] = false;
         $response['data'] = "Error";
@@ -254,8 +257,8 @@ if (isset($_POST['check_in_room'])) {
         $sql = "SELECT * FROM reservacion WHERE id_reservacion = '$booking_id'";
         $result = mysqli_query($connection, $sql);
         $booking_details = mysqli_fetch_assoc($result);
-        $room_id = $booking_details['room_id'];
-        $remaining_price = $booking_details['total_price'] - $advance_payment;
+        $room_id = $booking_details['id_habitacion'];
+        $remaining_price = $booking_details['precioTotal'] - $advance_payment;
 
         $updateBooking = "UPDATE reservacion SET precioRestante = '$remaining_price' where id_reservacion = '$booking_id'";
         $result = mysqli_query($connection, $updateBooking);
