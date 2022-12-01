@@ -317,8 +317,8 @@ $(document).on('click', '#checkOutRoom', function(e) {
                 $('#getRoomNo_n').html(response.room_no);
                 $('#getCheckIn_n').html(response.check_in);
                 $('#getCheckOut_n').html(response.check_out);
-                $('#getTotalPrice_n').html(response.total_price + '/-');
-                $('#getRemainingPrice_n').html(response.remaining_price + '/-');
+                $('#getTotalPrice_n').html('$' + response.total_price);
+                $('#getRemainingPrice_n').html('$' + response.remaining_price);
                 $('#getBookingId_n').val(response.booking_id);
                 $('#checkOut').modal('show');
             } else {

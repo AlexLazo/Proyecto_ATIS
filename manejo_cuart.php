@@ -213,7 +213,7 @@
     </div>
 
 
-    <!---customer details-->
+    <!---Detalles del cliente-->
     <div id="customerDetailsModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
