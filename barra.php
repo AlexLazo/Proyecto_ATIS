@@ -83,13 +83,13 @@
         if (isset($_GET['estadist'])){ ?>
             <li class="active">
                 <a href="index.php?estadist"><em class="fa fa-pie-chart">&nbsp;</em>
-                    Estadísticas
+                    Reportes
                 </a>
             </li>
         <?php } else{?>
         <li>
             <a href="index.php?estadist"><em class="fa fa-pie-chart">&nbsp;</em>
-                    Estadísticas
+                    Reportes
             </a>
         </li>
 <?php }?>

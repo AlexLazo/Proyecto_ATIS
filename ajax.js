@@ -465,6 +465,6 @@ $(document).on('click', '#change_shift', function(e) {
 
     var emp_id = $(this).data('id');
     console.log(emp_id);
-    $('#getEmpId').val(emp_id);
+    $('#getEmpId').val(id_empleado);
 
 });
