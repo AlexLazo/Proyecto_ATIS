@@ -20,8 +20,8 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
 </br>
-            <form action="pdf.php" method="post" accept-charset="utf-8">
-                    <button type="submit" class="btn btn-secondary pull-right" style="border-radius:0%">Descargar Reporte</button>
+                <form action="pdf.php" method="post" accept-charset="utf-8">
+                    <button type="submit" class="btn btn-secondary pull-right" style="border-radius:0%"  formtarget="_blank">Descargar Reporte</button>
                 </form>
                 <div class="panel-heading">Reportes</div>
                 <div class="panel-body">
