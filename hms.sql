@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2022 a las 04:32:19
+-- Tiempo de generación: 06-12-2022 a las 06:18:34
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 7.4.27
 
@@ -38,10 +38,8 @@ CREATE TABLE `cambio` (
 --
 
 INSERT INTO `cambio` (`id_cambio`, `cambio`, `tiempoCambio`) VALUES
-(1, 'Mañana', '5:00 AM - 10:00 AM'),
-(2, 'Día', '10:00 AM - 4:00 PM'),
-(3, 'Tarde', '4:00 PM - 10:00 PM'),
-(4, 'Noche', '10:00 PM - 5:00 AM');
+(1, 'Diurno', '6:00 AM - 6:00 PM'),
+(2, 'Nocturno', '6:00 PM - 6:00 AM');
 
 -- --------------------------------------------------------
 
@@ -72,7 +70,9 @@ INSERT INTO `cliente` (`id_cliente`, `nombre`, `contacto`, `email`, `id_tipodocu
 (17, 'Miguel Marquina', 26044444, 'admin@univo', 2, '9999-999999-999-9', 'San Miguel'),
 (19, 'Lisseth Lazo', 79491661, 'admin@univo', 1, '0000070-6', 'La Unión'),
 (20, 'Diego Hernández', 74445696, 'diego@gmail.com', 4, '9999-999999-999-9', 'La Unión'),
-(21, 'Miguel Vega', 26045555, 'miguel@gmail.com', 4, '9999-999999-999-9', 'La Unión');
+(21, 'Miguel Vega', 26045555, 'miguel@gmail.com', 4, '9999-999999-999-9', 'La Unión'),
+(22, 'Brian Fuentes', 797915155, 'admin@univo', 1, '0000070-6', 'La Unión'),
+(23, 'Ada Saénz', 74555555, 'admin@univo', 4, '9999-999999-999-9', 'San Miguel');
 
 -- --------------------------------------------------------
 
@@ -95,7 +95,7 @@ CREATE TABLE `habitacion` (
 --
 
 INSERT INTO `habitacion` (`id_habitacion`, `id_tipohabitacion`, `numeroHabitacion`, `estado`, `check_in_Estado`, `check_out_Estado`, `EliminarEstado`) VALUES
-(1, 1, 'A-1', 1, 1, 1, 0),
+(1, 1, 'A-1', NULL, 0, 1, 0),
 (2, 2, 'A-2', NULL, 0, 1, 0),
 (3, 4, 'A-3', NULL, 0, 0, 1),
 (4, 4, 'A-4', NULL, 0, 0, 1),
@@ -103,13 +103,15 @@ INSERT INTO `habitacion` (`id_habitacion`, `id_tipohabitacion`, `numeroHabitacio
 (6, 2, 'A-7', NULL, 0, 0, 1),
 (7, 4, 'A-6', NULL, 0, 0, 0),
 (8, 5, 'A-8', NULL, 0, 1, 0),
-(9, 6, 'A-13', 1, 0, 0, 0),
+(9, 6, 'A-13', NULL, 0, 1, 0),
 (11, 4, 'A-10', NULL, 0, 1, 0),
 (12, 7, 'A-11', NULL, 0, 1, 0),
 (13, 1, 'A-12', NULL, 0, 1, 1),
 (14, 7, 'A-14', NULL, 0, 0, 1),
 (15, 3, 'A-15', NULL, 0, 0, 0),
-(16, 8, 'A-100', 1, 0, 0, 0);
+(16, 8, 'A-100', NULL, 0, 1, 0),
+(17, 3, 'A-16', NULL, 0, 0, 0),
+(18, 4, 'A-17', 1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -131,8 +133,8 @@ CREATE TABLE `historiaempleado` (
 --
 
 INSERT INTO `historiaempleado` (`id`, `id_empleado`, `id_cambio`, `from_date`, `to_date`, `creado`) VALUES
-(41, 4, 2, '2022-12-01 03:12:57', '2022-12-01 10:23:23', '2022-12-01 03:12:57'),
-(45, 4, 2, '2022-12-01 03:23:23', NULL, '2022-12-01 03:23:23');
+(102, 1, 1, '2022-12-06 04:52:46', '2022-12-06 11:57:29', '2022-12-06 04:52:46'),
+(103, 1, 2, '2022-12-06 04:57:29', NULL, '2022-12-06 04:57:29');
 
 -- --------------------------------------------------------
 
@@ -159,7 +161,7 @@ CREATE TABLE `personal` (
 --
 
 INSERT INTO `personal` (`id_empleado`, `nombre`, `id_tipopersonal`, `id_cambio`, `id_tipodocumento`, `numeroTarjeta`, `direccion`, `telefono`, `salario`, `diaIngreso`, `actualizado`) VALUES
-(4, 'Brian Lazo', 1, 2, 1, '0000070-6', 'La Unión', '45650252', 1000, '2022-12-01 03:29:54', '0000-00-00 00:00:00');
+(1, 'Brian Lazo', 1, 2, 1, '0000070-6', 'La Unión', '74562535', 1200, '2022-12-06 04:57:29', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -215,9 +217,11 @@ INSERT INTO `reservacion` (`id_reservacion`, `id_cliente`, `id_habitacion`, `fec
 (12, 14, 11, '2022-11-23 20:57:46', '24-11-2022', '26-11-2022', 210, 0, 1),
 (13, 16, 13, '2022-11-23 21:19:47', '24-11-2022', '26-11-2022', 150, 0, 1),
 (14, 17, 8, '2022-11-24 04:15:38', '23-11-2022', '24-11-2022', 146, 0, 1),
-(15, 19, 1, '2022-12-01 01:53:54', '01-12-2022', '03-12-2022', 150, 0, 0),
-(16, 20, 16, '2022-12-01 01:55:45', '01-12-2022', '04-12-2022', 520, 520, 0),
-(17, 21, 9, '2022-12-01 01:57:21', '01-12-2022', '04-12-2022', 440, 440, 0);
+(15, 19, 1, '2022-12-01 01:53:54', '01-12-2022', '03-12-2022', 150, 0, 1),
+(16, 20, 16, '2022-12-01 01:55:45', '01-12-2022', '04-12-2022', 520, 0, 1),
+(17, 21, 9, '2022-12-01 01:57:21', '01-12-2022', '04-12-2022', 440, 0, 1),
+(18, 22, 2, '2022-12-05 23:10:09', '10-12-2022', '19-12-2022', 600, 0, 1),
+(19, 23, 18, '2022-12-06 00:48:15', '06-12-2022', '07-12-2022', 140, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -301,16 +305,15 @@ CREATE TABLE `usuario` (
   `nombre` varchar(100) NOT NULL,
   `username` varchar(15) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `creado` datetime NOT NULL
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombre`, `username`, `email`, `password`, `creado`) VALUES
-(1, 'Administrador', 'admin', '@admin', '21232f297a57a5a743894a0e4a801fc3', '2022-10-26 10:54:20');
+INSERT INTO `usuario` (`id`, `nombre`, `username`, `email`, `password`) VALUES
+(1, 'Administrador', 'admin', '@admin', '123');
 
 --
 -- Índices para tablas volcadas
@@ -405,25 +408,25 @@ ALTER TABLE `cambio`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_cliente` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `habitacion`
 --
 ALTER TABLE `habitacion`
-  MODIFY `id_habitacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_habitacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `historiaempleado`
 --
 ALTER TABLE `historiaempleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
 --
 ALTER TABLE `personal`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `quejas`
@@ -435,7 +438,7 @@ ALTER TABLE `quejas`
 -- AUTO_INCREMENT de la tabla `reservacion`
 --
 ALTER TABLE `reservacion`
-  MODIFY `id_reservacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_reservacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `tipohabitacion`

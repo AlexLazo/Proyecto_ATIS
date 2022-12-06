@@ -392,7 +392,7 @@ if (isset($_POST['resolve_complaint'])) {
 if (isset($_POST['change_shift'])) {
     $emp_id = $_POST['emp_id'];
     $shift_id = $_POST['shift_id'];
-    $query = "UPDATE personal SET id_empleado = '$shift_id' WHERE id_empleado='$emp_id'";
+    $query = "UPDATE personal SET id_cambio = '$shift_id' WHERE id_empleado='$emp_id'";
     $result = mysqli_query($connection, $query);
     $to_date = date("Y-m-d H:i:s");
     $update = "UPDATE historiaempleado SET to_date = '$to_date' WHERE id_empleado = '$emp_id' AND to_date IS NULL";

@@ -117,7 +117,7 @@ function validId(val) {
     } else if (val == 4) {
         document.getElementById('id_card_no').setAttribute('type', 'text');
         document.getElementById('id_card_no').setAttribute('data-minlength', '17');
-        document.getElementById('id_card_no').setAttribute('placeholder', "999g-999999-999-9");
+        document.getElementById('id_card_no').setAttribute('placeholder', "9999-999999-999-9");
         document.getElementById('id_card_no').setAttribute('data-error', "Ingresa una licencia válida (incluye -)");
     }
 }
@@ -418,8 +418,6 @@ $('#edit_employee').submit(function() {
     var address = $('#address').val();
     var salary = $('#salary').val();
 
-
-
     $.ajax({
         type: 'post',
         url: 'ajax.php',
@@ -465,6 +463,6 @@ $(document).on('click', '#change_shift', function(e) {
 
     var emp_id = $(this).data('id');
     console.log(emp_id);
-    $('#getEmpId').val(id_empleado);
+    $('#getEmpId').val(emp_id);
 
 });

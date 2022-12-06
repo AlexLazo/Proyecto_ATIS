@@ -69,7 +69,7 @@
                                     $result = mysqli_query($connection, $query);
                                     if (mysqli_num_rows($result) > 0) {
                                         while ($id_card_type = mysqli_fetch_assoc($result)) {
-                                            echo '<option value="' . $id_card_type['id_tipodocumento'] . '">' . $id_card_type['tipodocumento'] . '</option>';
+                                            echo '<option value="' . $id_card_type['id_tipodocumento'] . '">' . $id_card_type['tipotarjeta'] . '</option>';
                                         }
                                     }
                                     ?>

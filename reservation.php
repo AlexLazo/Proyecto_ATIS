@@ -145,7 +145,7 @@ if (isset($_GET['id_habitacion'])){
 
                             <div class="form-group col-lg-6">
                                 <label>Dirección de correo electronico</label>
-                                <input type="email" class="form-control" placeholder="Dirección de E-Mail" id="email" data-error="Enter Valid Email Address" required>
+                                <input type="email" class="form-control" placeholder="Dirección de E-Mail" id="email" data-error="Ingresa una dirección de correo válida" required>
                                 <div class="help-block with-errors"></div>
                             </div>
 
@@ -231,7 +231,7 @@ if (isset($_GET['id_habitacion'])){
                             </tr>
                             <tr>
                                 <td><b>Estado de pago</b></td>
-                                <td id="getPaymentStaus">$ </td>
+                                <td id="getPaymentStaus">$</td>
                             </tr>
 
                             </tbody>

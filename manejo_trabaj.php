@@ -18,12 +18,12 @@
                     <?php
                     if (isset($_GET['error'])) {
                         echo "<div class='alert alert-danger'>
-                                <span class='glyphicon glyphicon-info-sign'></span> &nbsp; Error al hacer el cambio de turno
+                                <span class='glyphicon glyphicon-info-sign'></span> &nbsp; Error al hacer el cambio
                             </div>";
                     }
                     if (isset($_GET['success'])) {
                         echo "<div class='alert alert-success'>
-                                <span class='glyphicon glyphicon-info-sign'></span> &nbsp;Cambio correctamente agregado
+                                <span class='glyphicon glyphicon-info-sign'></span> &nbsp; Cambio realizado correctamente
                             </div>";
                     }
                     ?>
@@ -106,11 +106,11 @@ if (mysqli_num_rows($staff_result) > 0) {
         ?>
 
 
-        <!-- Employee Detail-->
+        
         <div id="empDetail<?php echo $staffGlobal['id_empleado']; ?>" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
-                <!-- Modal content-->
+                <!--Modal de editar-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -241,7 +241,7 @@ if (mysqli_num_rows($staff_result) > 0) {
             </div>
         </div>
 
-        <!-- Employee Detail-->
+        <!-- Detalles del empleado-->
         <div id="changeShift" class="modal fade" role="dialog">
             <div class="modal-dialog">
 

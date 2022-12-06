@@ -35,10 +35,10 @@ if (isset($_POST['submit'])) {
     $salary = $_POST['salary'];
 
     $query="UPDATE personal
-SET nombre='$first_name $last_name', id_tipopersonal='$staff_type_id', id_cambio='$shift_id', id_tipodocumento=$id_card_type,
-numeroTarjeta='$id_card_no',direccion='$address',telefono='$contact_no',diaIngreso='$joining_date',salario='$salary'
-WHERE id_empleado=$emp_id ";
-//echo $query;
+    SET nombre='$first_name $last_name', id_tipopersonal='$staff_type_id', id_cambio='$shift_id', id_tipodocumento=$id_card_type,
+    numeroTarjeta='$id_card_no',direccion='$address',telefono='$contact_no',diaIngreso='$joining_date',salario='$salary'
+    WHERE id_empleado=$emp_id ";
+    //echo $query;
     if (mysqli_query($connection, $query)) {
         header('Location: index.php?manejo_trabaj&success');
     } else {

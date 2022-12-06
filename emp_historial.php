@@ -122,7 +122,7 @@ if (mysqli_num_rows($staff_result) > 0) {
                                                         $result = mysqli_query($connection, $query);
                                                         if (mysqli_num_rows($result) > 0) {
                                                             while ($staff = mysqli_fetch_assoc($result)) {
-                                                                echo '<option value="' . $staff['id_tipopersonal'] . '" ' . (($staff['id_tipopersonal'] == $staffGlobal['id_tipopersonal']) ? 'selected="selected"' : "") . '>' . $staff['staff_type'] . '</option>';
+                                                                echo '<option value="' . $staff['id_tipopersonal'] . '" ' . (($staff['id_tipopersonal'] == $staffGlobal['id_tipopersonal']) ? 'selected="selected"' : "") . '>' . $staff['tipopersonal'] . '</option>';
                                                             }
                                                         }
                                                         ?>
@@ -171,7 +171,7 @@ if (mysqli_num_rows($staff_result) > 0) {
 
                                                         if (mysqli_num_rows($result) > 0) {
                                                             while ($id_card_type = mysqli_fetch_assoc($result)) {
-                                                                echo '<option  value="' . $id_card_type['id_tipodocumento'] . '" ' . (($id_card_type['id_tipodocumento'] == $staffGlobal['id_tipodocumento']) ? 'selected="selected"' : "") . '>' . $id_card_type['id_card_type'] . '</option>';
+                                                                echo '<option  value="' . $id_card_type['id_tipodocumento'] . '" ' . (($id_card_type['id_tipodocumento'] == $staffGlobal['id_tipodocumento']) ? 'selected="selected"' : "") . '>' . $id_card_type['tipotarjeta'] . '</option>';
                                                             }
                                                         }
 
@@ -181,7 +181,7 @@ if (mysqli_num_rows($staff_result) > 0) {
 
                                                 <div class="form-group col-lg-6">
                                                     <label>N° de ID</label>
-                                                    <input type="text" class="form-control" placeholder="ID Card No"
+                                                    <input type="text" class="form-control" placeholder="Número de ID"
                                                            id="id_card_no"
                                                            value="<?php echo $staffGlobal['numeroTarjeta']; ?>"
                                                            name="id_card_no" required>

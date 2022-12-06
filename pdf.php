@@ -9,7 +9,7 @@ ob_end_clean();
 class PDF extends FPDF{
       
     	public function Header() {
-            $this->Image('logo.png', 100, 10, 25, 25, '', '', '', false, 30, '', false, false, 0);
+            $this->Image('img/kingplace.png', 72, 10, 80, 40, '', '', '', false, 30, '', false, false, 0);
             $this->SetFont('Helvetica','B',13);
             $this->Cell(80);
             $this->Cell(30,10,'Reporte de Ventas',0,0,'C');

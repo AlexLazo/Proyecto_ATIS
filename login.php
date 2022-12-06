@@ -2,6 +2,7 @@
 <head>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/login.css"/>
+    <title>Iniciar Sesión</title>
 </head>
 <body>
 
@@ -29,7 +30,7 @@
                 <div class="form-group col-lg-12">
                     <label>Contraseña</label>
                     <input type="password" name="password" class="form-control" placeholder="" required
-                           data-error="Ingrese contraseña">
+                           data-error="Ingrese la contraseña">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>

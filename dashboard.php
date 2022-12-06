@@ -110,10 +110,57 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="row">
+		<?php
+  			$data1 = '';
+  			$data2 = '';
+    		$sql = "SELECT check_in, SUM(precioTotal) AS total FROM reservacion GROUP BY check_in  ";
+    		$result = mysqli_query($connection, $sql);
+
+    		while ($row = mysqli_fetch_array($result)) {
+        		$data1 = $data1 . '"'. $row['check_in'].'",';
+        		$data2 = $data2 . '"'. $row['total'] .'",';
+    		}
+
+    		$data1 = trim($data1,",");
+    		$data2 = trim($data2,",");
+		?>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="js/Chart.bundle.min.js"></script>
+        <div class="container"> 
+            <canvas id="chart" style="width: 100%; height: 30vh; background: #222; border: 1px solid #555652; margin-top: 10px;"></canvas>
+
+            <script>
+                var ctx = document.getElementById("chart").getContext('2d');
+                var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+					
+                    labels: [<?php echo $data1; ?> ],
+                    datasets: 
+                    [
+                    {
+                        label: 'Total de ganancias por día',
+                        data: [<?php echo $data2; ?>, ],
+                        backgroundColor: 'transparent',
+                        borderColor:'rgba(0,255,255)',
+                        borderWidth: 3  
+                    }]
+                },
+
+                options: {
+                    scales: {scales:{yAxes: [{beginAtZero: false}], xAxes: [{autoskip: true, maxTicketsLimit: 20}]}},
+                    tooltips:{mode: 'index'},
+                    legend:{display: true, position: 'top', labels: {fontColor: 'rgb(255,255,255)', fontSize: 16}}
+                }
+            });
+            </script>
+        </div>
+		</div>
 		
 	</div>
 	
-
-		
 </body>
 </html>
