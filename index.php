@@ -2,6 +2,10 @@
 include_once "db.php";
 session_start();
 
+if(empty($_SESSION['user_id'])){
+    header("location: login.php");
+}
+
 if (isset($_SESSION['user_id'])){
     $user_id = $_SESSION['user_id'];
     $userQuery = "SELECT * FROM usuario WHERE id = '$user_id'";

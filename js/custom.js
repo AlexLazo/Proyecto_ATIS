@@ -47,8 +47,11 @@ var checkout = $('#check_out_date').fdatepicker({
 }).on('changeDate', function(ev) {
     checkout.hide();
     var totalDays = Math.floor((checkout.date - checkin.date) / 86400000);
+    var tax = 7;
     var price = document.getElementById('price').innerHTML;
-    var total_price = (totalDays + 1) * (price);
+    var priceTax = (tax * 100) / 100;
+    var totalTax = price / priceTax;
+    var total_price = (((totalDays + 1) * (price)) + totalTax).toFixed(2);
     $('#staying_day').html(totalDays + 1);
     $('#total_price').html(total_price);
 }).data('datepicker');

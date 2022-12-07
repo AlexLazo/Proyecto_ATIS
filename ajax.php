@@ -12,10 +12,9 @@ if (isset($_POST['login'])) {
         $password = md5($password);
         $query = "SELECT * FROM usuario WHERE username = '$email' OR email='$email' AND password='$password'";
         $result = mysqli_query($connection, $query);
-        if (mysqli_num_rows($result) == 1) {
-            $user = mysqli_fetch_assoc($result);
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['user_id'] = $user['id'];
+        if ($datos=$result->fetch_object()) {
+            $_SESSION['username']=$datos->username;
+            $_SESSION['user_id'] = $datos->id;
             header('Location:index.php?dashboard');
         } else {
             header('Location:login.php?loginE');

@@ -4,7 +4,7 @@
             <img src="img/user.png" class="img-responsive" alt="">
         </div>
         <div class="profile-usertitle">
-            <div class="profile-usertitle-name"><?php echo $user['nombre'];?></div>
+            <div class="profile-usertitle-name"><?php echo $user['username'];?></div>
             <div class="profile-usertitle-status"><span class="indicator label-success"></span>Manager</div>
         </div>
         <div class="clear"></div>
