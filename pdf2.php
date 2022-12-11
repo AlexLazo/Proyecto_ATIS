@@ -10,7 +10,7 @@ class PDF extends FPDF{
             $this->Image('img/kingplace.png', 72, 10, 80, 40, '', '', '', false, 30, '', false, false, 0);
             $this->SetFont('Helvetica','B',13);
             $this->Cell(80);
-            $this->Cell(30,10,'Reporte de Ventas',0,0,'C');
+            $this->Cell(30,10,'Reporte de Habitaciones',0,0,'C');
             $this->Ln(5);
             $this->Cell(80);
             $this->Ln(27);
@@ -22,7 +22,7 @@ $pdf->SetMargins(20, 35, 25);
 $pdf->SetFillColor(232,232,232);
 $pdf->SetCreator('Hotel King Place');
 $pdf->SetAuthor('Hotel King Place');
-$pdf->SetTitle('Informe de Ventas');
+$pdf->SetTitle('Informe de Habitaciones');
 $pdf->AddPage();
 $pdf->SetFont('helvetica','B',10);
 $pdf->SetXY(150, 20);
@@ -46,31 +46,27 @@ $pdf->SetTextColor(34,68,136);
 $pdf->Write(0,iconv('UTF-8','windows-1252',''));
 
 $pdf->SetFont('helvetica','B', 15); 
-$pdf->Cell(100,6,'Ventas',0,0,'C');
+$pdf->Cell(100,6,'Reporte de Habitaciones',0,0,'C');
 $pdf->Ln(10);
 $pdf->SetTextColor(0, 0, 0); 
 
 $pdf->SetFillColor(232,232,232);
 $pdf->SetFont('helvetica','B',12); 
-$pdf->Cell(25,5,'Habitacion',1,0,'C',1); 
-$pdf->Cell(40,5,'Nombre',1,0,'C',1);
-$pdf->Cell(37,5,'Fecha reserva',1,0,'C',1);
-$pdf->Cell(25,5,'Check-In',1,0,'C',1);
-$pdf->Cell(25,5,'Check-Out',1,0,'C',1);
-$pdf->Cell(25,5,'Total (USD)',1,1,'C',1);
+$pdf->Cell(30,5,'Habitacion',1,0,'C',1); 
+$pdf->Cell(55,5,'Tipo de Habitacion',1,0,'C',1);
+$pdf->Cell(35,5,'Precio',1,0,'C',1);
+$pdf->Cell(55,5,'Maximo de Personas',1,1,'C',1);
 $pdf->SetFont('helvetica','',10);
 
-$sqlFecha= ("SELECT * FROM reservacion NATURAL JOIN cliente NATURAL JOIN habitacion ORDER BY fecha_reserva ASC");
+$sqlFecha= ("SELECT * FROM habitacion NATURAL JOIN tipohabitacion  ORDER BY id_habitacion ASC");
 
 $query = mysqli_query($connection, $sqlFecha);
 
 while ($dataRow = mysqli_fetch_array($query)) {
-        $pdf->Cell(25,6,($dataRow['numeroHabitacion']),1,0,'C');
-        $pdf->Cell(40,6,($dataRow['nombre']),1,0,'C');
-        $pdf->Cell(37,6,($dataRow['fecha_reserva']),1,0,'C');
-        $pdf->Cell(25,6,($dataRow['check_in']),1,0,'C');
-        $pdf->Cell(25,6,($dataRow['check_out']),1,0,'C');
-        $pdf->Cell(25,6,($dataRow['precioTotal']),1,1,'C');
+        $pdf->Cell(30,6,($dataRow['numeroHabitacion']),1,0,'C');
+        $pdf->Cell(55,6,($dataRow['tipohabitacion']),1,0,'C');
+        $pdf->Cell(35,6,($dataRow['precio']),1,0,'C');
+        $pdf->Cell(55,6,($dataRow['maximopersona']),1,1,'C');
     }
 
 $pdf->Output('Resumen_Pedido_'.date('d_m_y').'.pdf', 'I'); 

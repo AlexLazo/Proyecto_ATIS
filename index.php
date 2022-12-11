@@ -39,6 +39,9 @@ elseif (isset($_GET['quejas'])){
 elseif (isset($_GET['estadist'])){
     include_once "estadist.php";
 }
+elseif (isset($_GET['reportesHab'])){
+    include_once "reportesHab.php";
+}
 elseif (isset($_GET['emp_historial'])){
     include_once "emp_historial.php";
 }

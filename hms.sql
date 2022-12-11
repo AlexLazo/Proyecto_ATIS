@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-12-2022 a las 06:18:34
+-- Tiempo de generación: 11-12-2022 a las 20:28:21
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 7.4.27
 
@@ -72,7 +72,10 @@ INSERT INTO `cliente` (`id_cliente`, `nombre`, `contacto`, `email`, `id_tipodocu
 (20, 'Diego Hernández', 74445696, 'diego@gmail.com', 4, '9999-999999-999-9', 'La Unión'),
 (21, 'Miguel Vega', 26045555, 'miguel@gmail.com', 4, '9999-999999-999-9', 'La Unión'),
 (22, 'Brian Fuentes', 797915155, 'admin@univo', 1, '0000070-6', 'La Unión'),
-(23, 'Ada Saénz', 74555555, 'admin@univo', 4, '9999-999999-999-9', 'San Miguel');
+(23, 'Ada Saénz', 74555555, 'admin@univo', 4, '9999-999999-999-9', 'San Miguel'),
+(24, 'Angel Guevara', 74566555, 'admin@univo', 3, 'AO4444455', 'La Unión'),
+(25, 'Brian Lazo', 79491644, 'admin@univo', 1, '0000070-6', 'La Unión'),
+(26, 'Brian Lazo', 74561525, 'admin@univo', 3, 'AO4444455', 'San Miguel');
 
 -- --------------------------------------------------------
 
@@ -95,8 +98,8 @@ CREATE TABLE `habitacion` (
 --
 
 INSERT INTO `habitacion` (`id_habitacion`, `id_tipohabitacion`, `numeroHabitacion`, `estado`, `check_in_Estado`, `check_out_Estado`, `EliminarEstado`) VALUES
-(1, 1, 'A-1', NULL, 0, 1, 0),
-(2, 2, 'A-2', NULL, 0, 1, 0),
+(1, 1, 'A-1', 1, 0, 1, 0),
+(2, 2, 'A-2', 1, 0, 1, 0),
 (3, 4, 'A-3', NULL, 0, 0, 1),
 (4, 4, 'A-4', NULL, 0, 0, 1),
 (5, 5, 'A-5', NULL, 0, 0, 0),
@@ -108,7 +111,7 @@ INSERT INTO `habitacion` (`id_habitacion`, `id_tipohabitacion`, `numeroHabitacio
 (12, 7, 'A-11', NULL, 0, 1, 0),
 (13, 1, 'A-12', NULL, 0, 1, 1),
 (14, 7, 'A-14', NULL, 0, 0, 1),
-(15, 3, 'A-15', NULL, 0, 0, 0),
+(15, 3, 'A-15', 1, 0, 0, 0),
 (16, 8, 'A-100', NULL, 0, 1, 0),
 (17, 3, 'A-16', NULL, 0, 0, 0),
 (18, 4, 'A-17', 1, 1, 0, 0);
@@ -127,14 +130,6 @@ CREATE TABLE `historiaempleado` (
   `to_date` timestamp NULL DEFAULT NULL,
   `creado` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `historiaempleado`
---
-
-INSERT INTO `historiaempleado` (`id`, `id_empleado`, `id_cambio`, `from_date`, `to_date`, `creado`) VALUES
-(102, 1, 1, '2022-12-06 04:52:46', '2022-12-06 11:57:29', '2022-12-06 04:52:46'),
-(103, 1, 2, '2022-12-06 04:57:29', NULL, '2022-12-06 04:57:29');
 
 -- --------------------------------------------------------
 
@@ -155,13 +150,6 @@ CREATE TABLE `personal` (
   `diaIngreso` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `actualizado` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `personal`
---
-
-INSERT INTO `personal` (`id_empleado`, `nombre`, `id_tipopersonal`, `id_cambio`, `id_tipodocumento`, `numeroTarjeta`, `direccion`, `telefono`, `salario`, `diaIngreso`, `actualizado`) VALUES
-(1, 'Brian Lazo', 1, 2, 1, '0000070-6', 'La Unión', '74562535', 1200, '2022-12-06 04:57:29', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -186,7 +174,8 @@ CREATE TABLE `quejas` (
 
 INSERT INTO `quejas` (`id`, `nombreQueja`, `tipoQueja`, `Queja`, `fechaQueja`, `EstadoResolucion`, `FechaResolucion`, `presupuesto`) VALUES
 (13, 'AC no funciona', 'Funcional', 'Aire acondicionado dejó de funcionar', '2022-11-23 18:01:43', 1, '2022-11-23 18:01:49', 150),
-(14, 'TV no funciona', 'Funcional', 'Televisor dejó de encender', '2022-11-24 04:02:18', 1, '2022-11-24 04:02:24', 75);
+(14, 'TV no funciona', 'Funcional', 'Televisor dejó de encender', '2022-11-24 04:02:18', 1, '2022-11-24 04:02:24', 75),
+(15, 'PC no funciona', 'Funcional', 'Computadora dejó de responder y dar imagen', '2022-12-06 22:07:37', 1, '2022-12-06 22:07:46', 250);
 
 -- --------------------------------------------------------
 
@@ -221,7 +210,10 @@ INSERT INTO `reservacion` (`id_reservacion`, `id_cliente`, `id_habitacion`, `fec
 (16, 20, 16, '2022-12-01 01:55:45', '01-12-2022', '04-12-2022', 520, 0, 1),
 (17, 21, 9, '2022-12-01 01:57:21', '01-12-2022', '04-12-2022', 440, 0, 1),
 (18, 22, 2, '2022-12-05 23:10:09', '10-12-2022', '19-12-2022', 600, 0, 1),
-(19, 23, 18, '2022-12-06 00:48:15', '06-12-2022', '07-12-2022', 140, 0, 0);
+(19, 23, 18, '2022-12-06 00:48:15', '06-12-2022', '07-12-2022', 140, 0, 0),
+(20, 24, 2, '2022-12-07 17:43:07', '11-12-2022', '13-12-2022', 192, 192, 0),
+(21, 25, 1, '2022-12-07 21:10:19', '10-12-2022', '13-12-2022', 207, 207, 0),
+(22, 26, 15, '2022-12-07 21:25:03', '17-12-2022', '19-12-2022', 204, 204, 0);
 
 -- --------------------------------------------------------
 
@@ -305,14 +297,14 @@ CREATE TABLE `usuario` (
   `nombre` varchar(100) NOT NULL,
   `username` varchar(15) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `passw` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombre`, `username`, `email`, `password`) VALUES
+INSERT INTO `usuario` (`id`, `nombre`, `username`, `email`, `passw`) VALUES
 (1, 'Administrador', 'admin', '@admin', '123');
 
 --
@@ -389,12 +381,6 @@ ALTER TABLE `tipo_documento`
   ADD PRIMARY KEY (`id_tipodocumento`);
 
 --
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -408,7 +394,7 @@ ALTER TABLE `cambio`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_cliente` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `habitacion`
@@ -420,7 +406,7 @@ ALTER TABLE `habitacion`
 -- AUTO_INCREMENT de la tabla `historiaempleado`
 --
 ALTER TABLE `historiaempleado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
@@ -432,13 +418,13 @@ ALTER TABLE `personal`
 -- AUTO_INCREMENT de la tabla `quejas`
 --
 ALTER TABLE `quejas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `reservacion`
 --
 ALTER TABLE `reservacion`
-  MODIFY `id_reservacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_reservacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `tipohabitacion`
@@ -457,12 +443,6 @@ ALTER TABLE `tipopersonal`
 --
 ALTER TABLE `tipo_documento`
   MODIFY `id_tipodocumento` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
