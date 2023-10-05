@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="form-group col-lg-12">
                     <label>Usuario</label>
-                    <input type="text" name="email" class="form-control" placeholder="" required
+                    <input type="text" name="username" class="form-control" form-control" placeholder="" required
                            data-error="Ingrese el usuario">
                     <div class="help-block with-errors"></div>
                 </div>

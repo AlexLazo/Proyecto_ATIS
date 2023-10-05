@@ -1,22 +1,30 @@
 <?php
 include_once 'db.php';
 session_start();
-
 if (isset($_POST['login'])) {
-    $email = $_POST['email'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
 
-    if (!$email && !$password) {
+    if (!$username && !$password) {
         header('Location:login.php?empty');
     } else {
-        $password = md5($password);
-        $query = "SELECT * FROM usuario WHERE username = '$email' OR email='$email' AND passw='$password'";
+        $query = "SELECT * FROM usuario WHERE username = '$username'";
         $result = mysqli_query($connection, $query);
-        if ($datos=$result->fetch_object()) {
-            $_SESSION['username']=$datos->username;
-            $_SESSION['user_id'] = $datos->id;
-            header('Location:index.php?dashboard');
+
+        if ($result && $datos = $result->fetch_object()) {
+            $hashedPassword = $datos->passw;
+
+            if (password_verify($password, $hashedPassword)) {
+                // Password is correct, proceed with login.
+                $_SESSION['username'] = $datos->username;
+                $_SESSION['user_id'] = $datos->id;
+                header('Location:index.php?dashboard');
+            } else {
+                // Password is incorrect.
+                header('Location:login.php?loginE');
+            }
         } else {
+            // User not found.
             header('Location:login.php?loginE');
         }
     }
@@ -122,12 +130,12 @@ if (isset($_POST['room_type'])) {
     $sql = "SELECT * FROM habitacion WHERE id_tipohabitacion = '$room_type_id' AND estado IS NULL AND EliminarEstado = '0'";
     $result = mysqli_query($connection, $sql);
     if ($result) {
-        echo "<option selected disabled>Seleccione el Tipo de Habitación</option>";
+        echo "<option selected disabled>Seleccione el tipo de habitación</option>";
         while ($room = mysqli_fetch_assoc($result)) {
             echo "<option value='" . $room['id_habitacion'] . "'>" . $room['numeroHabitacion'] . "</option>";
         }
     } else {
-        echo "<option>No Available</option>";
+        echo "<option>No disponible</option>";
     }
 }
 
@@ -304,11 +312,11 @@ if (isset($_POST['check_out_room'])) {
                     $response['done'] = true;
                 } else {
                     $response['done'] = false;
-                    $response['data'] = "Problem in Update Room Check in status";
+                    $response['data'] = "Problema en actualizar el Estado del Check-In";
                 }
             } else {
                 $response['done'] = false;
-                $response['data'] = "Problem en el pago";
+                $response['data'] = "Problema en el pago";
             }
 
         } else {
@@ -339,7 +347,7 @@ if (isset($_POST['add_employee'])) {
 
     if ($staff_type == '' && $shift == '' && $salary == ''){
         $response['done'] = false;
-        $response['data'] = "Please Enter Carednalities";
+        $response['data'] = "Ingresa los datos";
     }else{
         $customer_sql = "INSERT INTO personal (nombre,id_tipopersonal,id_cambio,id_tipodocumento,numeroTarjeta,direccion,telefono,salario) VALUES ('$name','$staff_type','$shift','$id_card_id','$id_card_no','$address','$contact_no','$salary')";
         $customer_result = mysqli_query($connection, $customer_sql);
