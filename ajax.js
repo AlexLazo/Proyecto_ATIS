@@ -25,51 +25,6 @@ $('#addRoom').submit(function() {
     return false;
 });
 
-// Function to handle user registration
-function registerUser() {
-    // Get user input from form fields
-    var nombre = document.getElementById("nombre").value;
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-
-    // Create an XMLHttpRequest object
-    var xhr = new XMLHttpRequest();
-
-    // Define the POST request to your server-side PHP script (replace with the correct path)
-    var url = "register.php";
-
-    // Prepare the data to send to the server
-    var data = "nombre=" + nombre + "&username=" + username + "&password=" + password;
-
-    // Configure the request
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-    // Define a callback function to handle the server's response
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            // Handle the response from the server
-            var response = xhr.responseText;
-            if (response === "success") {
-                // Registration successful
-                alert("Registration successful. You can now log in.");
-                // You can optionally redirect the user to the login page here
-            } else if (response === "error") {
-                // Registration failed
-                alert("Registration failed. Please try again later.");
-            }
-        }
-    };
-
-    // Send the request with the data
-    xhr.send(data);
-}
-
-// Add an event listener to the registration form submit button
-document.getElementById("registerButton").addEventListener("click", function(event) {
-    event.preventDefault(); // Prevent the form from submitting traditionally
-    registerUser(); // Call the registerUser function to handle the registration
-});
 
 
 

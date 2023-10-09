@@ -37,38 +37,23 @@ var checkin = $('#check_in_date').fdatepicker({
     $('#check_out_date')[0].focus();
 
 
-}).on('changeDate', function(ev) {
-    var checkin = $('#check_in_date').datepicker('getDate');
-    var checkout = $('#check_out_date').datepicker('getDate');
-
-    if (checkin && checkout) {
-        var totalDays = Math.floor((checkout - checkin) / (1000 * 60 * 60 * 24)); // Calculate total days
-
-        // Get the room price as a float
-        var roomPrice = parseFloat($('#price').text());
-
-        // Calculate the total price (room price * total days)
-        var totalPrice = roomPrice * (totalDays + 1); // Adding 1 for inclusive days
-
-        // IVA tax rate (13%)
-        var ivaTaxRate = 0.13;
-
-        // Tourism tax rate (5%)
-        var tourismTaxRate = 0.05;
-
-        // Calculate the tax based on the total price
-        var ivaTax = totalPrice * ivaTaxRate;
-        var tourismTax = totalPrice * tourismTaxRate;
-
-        // Calculate the total price including taxes
-        var totalPriceWithTaxes = totalPrice + ivaTax + tourismTax;
-
-        // Update the displayed values
-        $('#staying_day').html(totalDays + 1); // Adding 1 for inclusive days
-        $('#iva_tax').html('$' + ivaTax.toFixed(2)); // Format IVA tax to 2 decimal places
-        $('#tourism_tax').html('$' + tourismTax.toFixed(2)); // Format tourism tax to 2 decimal places
-        $('#total_price').html('$' + totalPriceWithTaxes.toFixed(2)); // Format total price to 2 decimal places
+}).data('datepicker');
+var checkout = $('#check_out_date').fdatepicker({
+    format: 'dd-mm-yyyy',
+    onRender: function(date) {
+        return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
     }
+
+}).on('changeDate', function(ev) {
+    checkout.hide();
+    var totalDays = Math.floor((checkout.date - checkin.date) / 86400000);
+    var tax = 7;
+    var price = document.getElementById('price').innerHTML;
+    var priceTax = (tax * 100) / 100;
+    var totalTax = price / priceTax;
+    var total_price = (((totalDays + 1) * (price)) + totalTax).toFixed(2);
+    $('#staying_day').html(totalDays + 1);
+    $('#total_price').html(total_price);
 }).data('datepicker');
 
 

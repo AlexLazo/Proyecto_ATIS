@@ -30,7 +30,7 @@
                 <label for="password" class="form-label">Contraseña</label>
                 <div class="input-group">
                     <input type="password" id="password" name="password" class="form-control" placeholder="Ingrese su contraseña" required>
-                    <div class="input-group-append">
+                    <div class="input-group">
                         <button type="button" id="show-hide-password" class="btn btn-outline-secondary btn-show-hide-password" onclick="togglePasswordVisibility()">Mostrar</button>
                     </div>
                 </div>

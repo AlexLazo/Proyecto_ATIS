@@ -401,7 +401,7 @@ if (isset($_POST['change_shift'])) {
     $shift_id = $_POST['shift_id'];
     $query = "UPDATE personal SET id_cambio = '$shift_id' WHERE id_empleado='$emp_id'";
     $result = mysqli_query($connection, $query);
-    $to_date = date("Y-m-d H:i:s");
+    $to_date = date("Y-m-d");
     $update = "UPDATE historiaempleado SET to_date = '$to_date' WHERE id_empleado = '$emp_id' AND to_date IS NULL";
     $update_result = mysqli_query($connection,$update);
     $insert = "INSERT INTO historiaempleado(id_empleado,id_cambio) VALUES ('$emp_id','$shift_id')";

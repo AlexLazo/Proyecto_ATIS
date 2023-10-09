@@ -69,6 +69,8 @@
     </form>
 </div>
 
+
+
     <ul class="nav menu">
     <?php 
         if (isset($_GET['dashboard'])){ ?>
@@ -193,12 +195,15 @@
             var username = $('#username').val();
             var password = $('#password').val();
 
-            var formData = {
+            if (nombre == "" & username == "" & password == ""){
+                alert('Datos vacios');
+            }else{
+                var formData = {
                 nombre: nombre,
                 username: username,
                 password: password
-            }
-
+                }
+            
             $.ajax({
                 type: 'POST',
                 url: 'register.php', // Specify the correct URL for your registration script
@@ -212,7 +217,10 @@
                     }
                 }
             });
+        }
         });
+    
     });
+
 </script>
 

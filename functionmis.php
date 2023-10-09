@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
 
     $query="UPDATE personal
     SET nombre='$first_name $last_name', id_tipopersonal='$staff_type_id', id_cambio='$shift_id', id_tipodocumento=$id_card_type,
-    numeroTarjeta='$id_card_no',direccion='$address',telefono='$contact_no',diaIngreso='$joining_date',salario='$salary'
+    numeroTarjeta='$id_card_no',direccion='$address',telefono='$contact_no',salario='$salary'
     WHERE id_empleado=$emp_id ";
     //echo $query;
     if (mysqli_query($connection, $query)) {
